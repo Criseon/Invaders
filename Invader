@@ -1,0 +1,43 @@
+namespace Invaders
+{
+    class Invader
+    {
+        Timer timer;
+        PictureBox pbLocal;
+        int Leven = 5;
+
+        public Invader(PictureBox picture)
+        {
+            timer = new Timer();
+            timer.Start();
+            timer.Interval = 2000;
+            timer.Tick += Timer_Tick;
+            pbLocal = picture;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            Positie(pbLocal);
+        }
+
+        private void Positie(PictureBox picture)
+        {
+
+            picture.Location = new System.Drawing.Point
+            {
+                X = picture.Location.X,
+                Y = picture.Location.Y + 50
+            };
+        }
+
+        public void verliesleven()
+        {
+            this.Leven = this.Leven - 1;
+            if (Leven <= 0)
+            {
+                pbLocal.Visible = false;
+
+            }
+        }
+    }
+}
